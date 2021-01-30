@@ -25,7 +25,8 @@ export default [
     children: [
       {
         path: "",
-        component: () => import('../pages/Admin/Dashboard')
+        component: () => import('../pages/Admin/Dashboard'),
+        meta: { auth: true }
       }
     ]
   },

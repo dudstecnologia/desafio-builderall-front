@@ -6,6 +6,8 @@
 </template>
 
 <script>
+import '../assets/sb-admin-2.css'
+
 export default {
   name: 'AdminLayout'
 }
