@@ -40,7 +40,7 @@ export default {
       this.$http.post('/auth/login', this.form)
         .then(({ data }) => {
           this.setAuthToken(data.access_token)
-          this.$router.replace('/admin')
+          this.$router.push('/admin')
         })
         .catch(() => {
           this.$swal.fire('Ops!', 'Credenciais inválidas', 'error')
