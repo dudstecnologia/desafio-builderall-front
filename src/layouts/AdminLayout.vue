@@ -1,14 +1,19 @@
 <template>
   <div>
-    <h1>Admin</h1>
-    <router-view></router-view>
+    <navbar></navbar>
+    <div class="container pt-2">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script>
-import '../assets/sb-admin-2.css'
+import Navbar from '../components/admin/Navbar'
 
 export default {
-  name: 'AdminLayout'
+  name: 'AdminLayout',
+  components: {
+    Navbar
+  }
 }
 </script>

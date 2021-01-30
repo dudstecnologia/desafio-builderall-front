@@ -27,6 +27,16 @@ export default [
         path: "",
         component: () => import('../pages/Admin/Dashboard'),
         meta: { auth: true }
+      },
+      {
+        path: "product",
+        component: () => import('../pages/Admin/Product'),
+        meta: { auth: true }
+      },
+      {
+        path: "purchase",
+        component: () => import('../pages/Admin/Purchase'),
+        meta: { auth: true }
       }
     ]
   },
