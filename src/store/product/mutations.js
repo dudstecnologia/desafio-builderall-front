@@ -13,3 +13,7 @@ export function delProduct (state, value) {
 export function setLoadingProducts (state, value) {
   state.loadingProducts = value
 }
+
+export function setModalForm (state, value) {
+  state.modalForm = value
+}

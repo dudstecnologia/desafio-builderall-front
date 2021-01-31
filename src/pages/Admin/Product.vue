@@ -1,17 +1,19 @@
 <template>
   <div>
-    <h1>Product</h1>
+    <form-product></form-product>
     <table-product></table-product>
   </div>
 </template>
 
 <script>
+import FormProduct from '../../components/admin/product/FormProduct'
 import TableProduct from '../../components/admin/product/TableProduct'
 
 export default {
   name: 'Product',
   components: {
-    TableProduct
+    TableProduct,
+    FormProduct
   }
 }
 </script>

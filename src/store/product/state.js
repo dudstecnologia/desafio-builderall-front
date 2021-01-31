@@ -1,6 +1,8 @@
 export default function () {
   return {
     products: [],
-    loadingProducts: false
+    loadingProducts: false,
+    modalForm: false,
+    selectedProduct: null
   }
 }

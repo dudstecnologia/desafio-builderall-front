@@ -1,11 +1,11 @@
 <template>
   <div class="table-responsive">
-    <b-table :fields="fields" :items="getProducts" :busy="getLoadingProducts" head-variant="light">
+    <b-table class="text-nowrap" :fields="fields" :items="getProducts" :busy="getLoadingProducts" head-variant="light">
       <template #cell(id)="data">
-        <b-button variant="primary" size="sm">
+        <b-button class="mr-1" variant="primary" size="sm">
           <i class="fa fa-edit"></i>
         </b-button>
-        <b-button class="ml-1" variant="danger" size="sm" @click="exclusionAlert(data.item)">
+        <b-button variant="danger" size="sm" @click="exclusionAlert(data.item)">
           <i class="fa fa-trash"></i>
         </b-button>
       </template>
