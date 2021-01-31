@@ -2,7 +2,7 @@
   <span>
     <b-button class="mb-2" variant="success" @click="setModalForm(true)">Add Product</b-button>
 
-    <b-modal title="Product registration" v-model="modalState" size="xl" hide-footer>
+    <b-modal title="Product registration" v-model="modalState" size="xl" no-close-on-backdrop hide-footer>
       <b-form @submit.prevent="submitProduct">
         <div class="row">
           <div class="col-md-8">
@@ -13,12 +13,17 @@
             <div class="row">
               <div class="col-6">
                 <b-form-group label="Price" >
-                  <money class="form-control" placeholder="Enter price" v-model="form.price"></money>
+                  <money class="form-control" placeholder="Enter price" v-model="form.price" v-bind="money"></money>
                 </b-form-group>
               </div>
               <div class="col-6">
                 <b-form-group label="Quantity" >
                   <b-form-input type="number" v-model="form.quantity" placeholder="Enter quantity" required></b-form-input>
+                </b-form-group>
+              </div>
+              <div class="col-6">
+                <b-form-group label="Currency" >
+                  <b-form-input v-model="form.currency" placeholder="Enter currency" required></b-form-input>
                 </b-form-group>
               </div>
             </div> 
@@ -62,8 +67,9 @@ export default {
       imageSelected: null,
       form: {
         name: '',
-        price: 0,
+        price: '',
         quantity: '',
+        currency: '',
         image: ''
       },
       money: {
@@ -72,26 +78,36 @@ export default {
         prefix: '',
         suffix: '',
         precision: 2,
-        masked: false
+        masked: true
       }
     }
   },
   methods: {
     ...mapMutations('product', [
       'setModalForm',
-      'setSelectedProduct'
+      'setSelectedProduct',
+      'addProduct'
     ]),
     submitProduct () {
-      if (this.form.price === 0) {
+      if (this.form.price === '0,00') {
         this.$swal.fire('Ops!', 'Enter product price', 'error')
         return 
       }
+
       if (this.form.image === '') {
         this.$swal.fire('Ops!', 'Select the product image', 'error')
         return
       }
 
-      alert(JSON.stringify(this.form))
+      this.$http.post('/products', this.form)
+        .then(({ data }) => {
+          this.addProduct(data.product)
+          this.setModalForm(false)
+          this.$swal.fire('Perfect!', 'Product successfully saved', 'success')
+        })
+        .catch(() => {
+          this.$swal.fire('Ops!', 'Error saving product', 'error')
+        })
     },
     selectImage (e) {
       const files = [ ...e.target.files ]
@@ -105,8 +121,9 @@ export default {
     },
     clearForm () {
       this.form.name = ''
-      this.form.price = 0
+      this.form.price = ''
       this.form.quantity = ''
+      this.form.currency = ''
       this.form.image = ''
       this.imageTemp = null
       this.imageSelected = null
@@ -114,7 +131,7 @@ export default {
   },
   filters: {
     imageProduct (v) {
-      return `data:image/png;base64, ${v}`
+      return `data:image/jpg;base64, ${v}`
     }
   },
   computed: {
@@ -136,8 +153,9 @@ export default {
 
       if (v && this.selectedProduct) {
         this.form.name = this.selectedProduct.name
-        this.form.price = this.selectedProduct.price
+        this.form.price = this.selectedProduct.price / 100
         this.form.quantity = this.selectedProduct.quantity
+        this.form.currency = this.selectedProduct.currency
         this.imageSelected = this.selectedProduct.image_url
       }
     }
