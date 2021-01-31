@@ -2,7 +2,7 @@
   <div class="table-responsive">
     <b-table class="text-nowrap" :fields="fields" :items="getProducts" :busy="getLoadingProducts" head-variant="light">
       <template #cell(id)="data">
-        <b-button class="mr-1" variant="primary" size="sm">
+        <b-button class="mr-1" variant="primary" size="sm" @click="editProduct(data.item.id)">
           <i class="fa fa-edit"></i>
         </b-button>
         <b-button variant="danger" size="sm" @click="exclusionAlert(data.item)">
@@ -42,7 +42,8 @@ export default {
   },
   methods: {
     ...mapActions('product', [
-      'getProductsApi'
+      'getProductsApi',
+      'getSingleProductApi'
     ]),
     ...mapMutations('product', [
       'delProduct'
@@ -72,6 +73,9 @@ export default {
         .catch(() => {
           this.$swal.fire('Ops!', 'Error deleting the product', 'error')
         })
+    },
+    editProduct (id) {
+      this.getSingleProductApi(id)
     }
   },
   computed: {

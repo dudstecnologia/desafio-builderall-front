@@ -10,3 +10,11 @@ export function getProductsApi (context) {
       context.commit('setLoadingProducts', false)
     })
 }
+
+export function getSingleProductApi (context, id) {
+  http.get(`/products/${id}`)
+    .then(({ data }) => {
+      context.commit('setSelectedProduct', data.product)
+      context.commit('setModalForm', true)
+    })
+}

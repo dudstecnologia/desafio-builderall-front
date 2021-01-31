@@ -34,7 +34,8 @@
               </b-form-file>
             </b-form-group>
 
-            <b-img :src="form.image | imageProduct" thumbnail></b-img>
+            <b-img :src="imageSelected" v-if="selectedProduct && !imageTemp" thumbnail></b-img>
+            <b-img :src="form.image | imageProduct" v-if="imageTemp" thumbnail></b-img>
           </div>
         </div>
         <b-button type="submit" variant="primary">Save</b-button>
@@ -58,6 +59,7 @@ export default {
       compress: new Compress(),
       modalState: false,
       imageTemp: null,
+      imageSelected: null,
       form: {
         name: '',
         price: 0,
@@ -76,7 +78,8 @@ export default {
   },
   methods: {
     ...mapMutations('product', [
-      'setModalForm'
+      'setModalForm',
+      'setSelectedProduct'
     ]),
     submitProduct () {
       if (this.form.price === 0) {
@@ -99,12 +102,18 @@ export default {
         }).then((data) => {
           this.form.image = data[0].data
         })
+    },
+    clearForm () {
+      this.form.name = ''
+      this.form.price = 0
+      this.form.quantity = ''
+      this.form.image = ''
+      this.imageTemp = null
+      this.imageSelected = null
     }
   },
   filters: {
     imageProduct (v) {
-      if (!v) return null
-
       return `data:image/png;base64, ${v}`
     }
   },
@@ -120,7 +129,16 @@ export default {
     },
     modalState (v) {
       if (!v) {
+        this.clearForm()
         this.setModalForm(false)
+        this.setSelectedProduct(null)
+      }
+
+      if (v && this.selectedProduct) {
+        this.form.name = this.selectedProduct.name
+        this.form.price = this.selectedProduct.price
+        this.form.quantity = this.selectedProduct.quantity
+        this.imageSelected = this.selectedProduct.image_url
       }
     }
   }

@@ -17,3 +17,7 @@ export function setLoadingProducts (state, value) {
 export function setModalForm (state, value) {
   state.modalForm = value
 }
+
+export function setSelectedProduct (state, value) {
+  state.selectedProduct = value
+}
