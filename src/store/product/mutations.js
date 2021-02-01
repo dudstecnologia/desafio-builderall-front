@@ -3,7 +3,13 @@ export function setProducts (state, value) {
 }
 
 export function addProduct (state, value) {
-  state.products.push(value)
+  const checkProduct = state.products.findIndex(e => e.id === value.id)
+
+  if (checkProduct >= 0) {
+    state.products.splice(checkProduct, 1, value)
+  } else {
+    state.products.push(value)
+  }
 }
 
 export function delProduct (state, value) {

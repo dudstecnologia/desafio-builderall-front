@@ -89,17 +89,18 @@ export default {
       'addProduct'
     ]),
     submitProduct () {
-      if (this.form.price === '0,00') {
-        this.$swal.fire('Ops!', 'Enter product price', 'error')
-        return 
-      }
+      let validate = this.formValidate()
 
-      if (this.form.image === '') {
-        this.$swal.fire('Ops!', 'Select the product image', 'error')
+      if (validate !== true) {
+        this.$swal.fire('Ops!', validate, 'error')
         return
       }
 
-      this.$http.post('/products', this.form)
+      this.$http({
+          method: this.selectedProduct ? 'PUT' : 'POST',
+          url: this.selectedProduct ? `/products/${this.selectedProduct.id}` : '/products',
+          data: this.form
+        })
         .then(({ data }) => {
           this.addProduct(data.product)
           this.setModalForm(false)
@@ -108,6 +109,21 @@ export default {
         .catch(() => {
           this.$swal.fire('Ops!', 'Error saving product', 'error')
         })
+    },
+    formValidate () {
+      if ([this.form['name'], this.form['price'], this.form['quantity'], this.form['currency']].includes('')) {
+        return 'Fill in the required fields'
+      }
+
+      if (!this.selectedProduct && this.form['image'] === '') {
+        return 'The product image is necessary for the creation'
+      }
+
+      if (this.form['price'] === '0,00') {
+        return 'Enter product price'
+      }
+
+      return true;
     },
     selectImage (e) {
       const files = [ ...e.target.files ]
