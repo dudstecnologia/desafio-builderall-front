@@ -1,12 +1,19 @@
 <template>
   <div>
-    <h1>Public</h1>
-    <router-view></router-view>
+    <navbar></navbar>
+    <div class="container pt-3">
+      <router-view></router-view>
+    </div>
   </div>
 </template>
 
 <script>
+import Navbar from '../components/public/Navbar'
+
 export default {
-  name: 'AdminLayout'
+  name: 'PublicLayout',
+  components: {
+    Navbar
+  },
 }
 </script>

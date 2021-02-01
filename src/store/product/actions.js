@@ -1,8 +1,8 @@
 import http from '../../service/http'
 
-export function getProductsApi (context) {
+export function getProductsApi (context, publ = false) {
   context.commit('setLoadingProducts', true)
-  http.get('/products')
+  http.get(publ ? '/list-products' : '/products')
     .then(({ data }) => {
       context.commit('setProducts', data.products)
     })

@@ -1,12 +1,16 @@
 <template>
   <div>
-    <h1>List of Products</h1>
-    <router-link to="/login">Login</router-link>
+    <list-products></list-products>
   </div>
 </template>
 
 <script>
+import ListProducts from '../components/public/product/ListProducts'
+
 export default {
-  name: 'Index'
+  name: 'Index',
+  components: {
+    ListProducts
+  },
 }
 </script>
