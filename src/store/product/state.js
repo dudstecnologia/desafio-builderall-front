@@ -3,6 +3,8 @@ export default function () {
     products: [],
     loadingProducts: false,
     modalForm: false,
-    selectedProduct: null
+    selectedProduct: null,
+    productsCart: [],
+    cartValue: 0
   }
 }

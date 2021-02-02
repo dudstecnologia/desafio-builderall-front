@@ -18,3 +18,9 @@ export function getSingleProductApi (context, id) {
       context.commit('setModalForm', true)
     })
 }
+
+export function getProductsCart (context) {
+  if (localStorage.getItem('cart')) {
+    context.commit('setProductsCart', JSON.parse(localStorage.getItem('cart')))
+  }
+}

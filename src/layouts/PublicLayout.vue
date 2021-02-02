@@ -9,11 +9,20 @@
 
 <script>
 import Navbar from '../components/public/Navbar'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'PublicLayout',
   components: {
     Navbar
   },
+  mounted () {
+    this.getProductsCart()
+  },
+  methods: {
+    ...mapActions('product', [
+      'getProductsCart'
+    ])
+  }
 }
 </script>
