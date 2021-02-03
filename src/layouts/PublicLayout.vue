@@ -18,10 +18,14 @@ export default {
   },
   mounted () {
     this.getProductsCart()
+    this.getPaypalClientIdApi()
   },
   methods: {
     ...mapActions('product', [
       'getProductsCart'
+    ]),
+    ...mapActions('auth', [
+      'getPaypalClientIdApi'
     ])
   }
 }

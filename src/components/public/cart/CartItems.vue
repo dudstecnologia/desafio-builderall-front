@@ -1,5 +1,10 @@
 <template>
   <div class="mb-3">
+    <div v-if="productsCart.length === 0">
+      <h5 class="mb-4">Your shopping cart is empty</h5>
+      <b-link to="/" class="btn btn-light">Go to products</b-link>
+    </div>
+    <div v-else>
       <h5 class="mb-4">Cart (<span>{{ productsCart.length }}</span> items)</h5>
 
       <div v-for="p in productsCart" :key="p.id">
@@ -54,7 +59,7 @@
 
         <hr class="mb-4">
       </div>
-
+    </div>
   </div>
 </template>
 
