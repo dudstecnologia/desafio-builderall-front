@@ -4,6 +4,7 @@ import VueAxios from 'vue-axios'
 import VueRouter from 'vue-router'
 import { BootstrapVue } from 'bootstrap-vue'
 import VueSweetalert2 from 'vue-sweetalert2'
+import LoadScript from 'vue-plugin-load-script'
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -16,6 +17,7 @@ import '@fortawesome/fontawesome-free/css/all.css'
 
 Vue.use(Vuex)
 Vue.use(VueRouter)
+Vue.use(LoadScript)
 Vue.use(BootstrapVue)
 Vue.use(VueSweetalert2)
 Vue.use(VueAxios, http)
