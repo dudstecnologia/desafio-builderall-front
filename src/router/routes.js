@@ -6,7 +6,11 @@ export default [
       {
         path: "",
         component: () => import('../pages/Index')
-       }
+      },
+      {
+        path: "cart",
+        component: () => import('../pages/Cart')
+      }
     ]
   },
   {

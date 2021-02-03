@@ -58,3 +58,23 @@ export function updateValueCart (state) {
 
   state.cartValue = (valueTemp / 100).toFixed(2)
 }
+
+export function setQuantityProductCart (state, value) {
+  const productIndex = state.productsCart.findIndex(e => e.id === value[0].id)
+
+  if (value[1] > 0) {
+    state.productsCart[productIndex].qt_cart = value[1]
+
+    localStorage.setItem('cart', JSON.stringify(state.productsCart))
+
+    this.commit('product/updateValueCart')
+  }
+}
+
+export function delProductCart (state, value) {
+  state.productsCart = state.productsCart.filter(p => p.id !== value)
+
+  localStorage.setItem('cart', JSON.stringify(state.productsCart))
+
+  this.commit('product/updateValueCart')
+}

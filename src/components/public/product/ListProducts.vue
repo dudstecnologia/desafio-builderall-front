@@ -9,7 +9,7 @@
           <div class="text-center pt-2">
             <h5>{{ p.name }}</h5>
             <hr>
-            <h6 class="mb-3">$ {{ p.price / 100 }}</h6>
+            <h6 class="mb-3">$ {{ p.price | productPrice }}</h6>
             <button type="button" class="btn btn-primary btn-sm mb-2" @click="addProductCart(p)">
               <i class="fas fa-shopping-cart pr-2"></i> Add to cart
             </button>
@@ -36,6 +36,11 @@ export default {
     ...mapMutations('product', [
       'addProductCart'
     ])
+  },
+  filters: {
+    productPrice (v) {
+      return (v / 100).toFixed(2);
+    }
   },
   computed: {
     ...mapGetters('product', [

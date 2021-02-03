@@ -9,7 +9,7 @@
       <b-navbar-nav class="ml-auto">
 
         <b-nav-item to="/" exact>Products</b-nav-item>
-        <b-nav-item >Cart <span class="badge badge-light">{{ cartValue }}</span></b-nav-item>
+        <b-nav-item to="/cart">Cart <span class="badge badge-light">{{ cartValue }}</span></b-nav-item>
       </b-navbar-nav>
     </b-collapse>
     </div>
