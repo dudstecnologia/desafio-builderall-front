@@ -78,3 +78,9 @@ export function delProductCart (state, value) {
 
   this.commit('product/updateValueCart')
 }
+
+export function clearCart (state) {
+  localStorage.removeItem('cart')
+  state.productsCart = []
+  state.cartValue = 0
+}
