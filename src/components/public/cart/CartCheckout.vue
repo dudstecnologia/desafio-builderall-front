@@ -34,7 +34,7 @@ export default {
          paypal.Buttons({
             // Call your server to set up the transaction
             createOrder: (data, actions) => {
-              return this.$http.post('/teste', { cart: this.productsCart })
+              return this.$http.post('/purchase-store', { cart: this.productsCart })
                 .then((res) => {
                   return res.data;
                 }).then((data) => {
@@ -42,12 +42,12 @@ export default {
                 });
             },
             // Call your server to finalize the transaction
-            onApprove: function(data, actions) {
-                return fetch('/demo/checkout/api/paypal/order/' + data.orderID + '/capture/', {
-                    method: 'post'
-                }).then(function(res) {
-                    return res.json();
-                }).then(function(orderData) {
+            onApprove: (data, actions) => {
+              console.log(data)
+              return this.$http.get('/purchase-capture/' + data.orderID)
+                .then((res) => {
+                    return res.data;
+                }).then((orderData) => {
                     // Three cases to handle:
                     //   (1) Recoverable INSTRUMENT_DECLINED -> call actions.restart()
                     //   (2) Other non-recoverable errors -> Show a failure message
