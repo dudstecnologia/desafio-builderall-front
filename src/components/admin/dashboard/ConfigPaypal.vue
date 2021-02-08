@@ -51,10 +51,11 @@ export default {
 
       this.$http.get('/paypals')
         .then(({ data }) => {
+          this.overlayStatus = false
           this.form.client_id = data.paypal.client_id
           this.form.secret = data.paypal.secret
         })
-        .then(() => {
+        .catch(() => {
           this.overlayStatus = false
         })
     }
