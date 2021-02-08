@@ -36,12 +36,14 @@ export default {
     getTopSellingProducts () {
       this.$http.get('/top-selling-products')
         .then(({ data }) => {
-          data.products.forEach((p) => {
-            this.chartData.labels.push(p.name)
-            this.chartData.datasets[0].data.push(p.qt)
+          if (data.products) {
+            data.products.forEach((p) => {
+              this.chartData.labels.push(p.name)
+              this.chartData.datasets[0].data.push(p.qt)
 
-            this.renderChart(this.chartData, this.chartOptions)
-          })
+              this.renderChart(this.chartData, this.chartOptions)
+            })
+          }
         })
     }
   }
