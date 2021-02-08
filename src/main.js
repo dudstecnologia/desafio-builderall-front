@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import VueMask from 'v-mask'
 import VueAxios from 'vue-axios'
 import VueRouter from 'vue-router'
 import { BootstrapVue } from 'bootstrap-vue'
@@ -16,6 +17,7 @@ import 'sweetalert2/dist/sweetalert2.min.css'
 import '@fortawesome/fontawesome-free/css/all.css'
 
 Vue.use(Vuex)
+Vue.use(VueMask)
 Vue.use(VueRouter)
 Vue.use(LoadScript)
 Vue.use(BootstrapVue)
