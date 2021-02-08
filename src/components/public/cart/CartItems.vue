@@ -27,7 +27,7 @@
                   <div class="input-group input-group-sm mb-0">
                     <div class="input-group-prepend">
                       <button class="btn btn-outline-secondary" 
-                        @click="setQuantityProductCart([p, --p.qt_cart])" 
+                        @click="setQuantityProductCart([p, p.qt_cart - 1])" 
                         :disabled="p.qt_cart == 1">
                         <i class="fas fa-minus"></i>
                       </button>
@@ -35,7 +35,7 @@
                       <input type="number" class="form-control text-center" style="max-width: 80px" v-model="p.qt_cart" readonly>
                       <div class="input-group-append">
                         <button class="btn btn-outline-secondary" 
-                          @click="setQuantityProductCart([p, ++p.qt_cart])" 
+                          @click="setQuantityProductCart([p, p.qt_cart + 1])" 
                           :disabled="p.qt_cart == p.quantity">
                           <i class="fas fa-plus"></i>
                         </button>
