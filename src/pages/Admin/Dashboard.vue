@@ -1,12 +1,17 @@
 <template>
   <div>
     <h1>Dashboard</h1>
-    <router-link to="/">Inicio</router-link>
+    <config-paypal></config-paypal>
   </div>
 </template>
 
 <script>
+import ConfigPaypal from '../../components/admin/dashboard/ConfigPaypal'
+
 export default {
-  name: 'Dashboard'
+  name: 'Dashboard',
+  components: {
+    ConfigPaypal
+  },
 }
 </script>
