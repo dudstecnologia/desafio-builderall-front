@@ -63,7 +63,10 @@ export function setQuantityProductCart (state, value) {
   const productIndex = state.productsCart.findIndex(e => e.id === value[0].id)
 
   if (value[1] > 0) {
-    state.productsCart[productIndex].qt_cart = value[1]
+    let prod = state.productsCart[productIndex]
+    prod.qt_cart = value[1]
+
+    state.productsCart.splice(productIndex, 1, prod)
 
     localStorage.setItem('cart', JSON.stringify(state.productsCart))
 
