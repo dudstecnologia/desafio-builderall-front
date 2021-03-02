@@ -7,6 +7,9 @@ Tecnologias:
 * Frontend: SPA em Vue 2.5/3
 * Backend: Api Laravel
 
+Demonstração:
+https://youtu.be/qWuhB6DEaNY
+
 ## Instalar o Vue CLI
 Pode não ser necessário, mas como os modos de desenvolvimento e build usam alguns comando que dependem dessa interface, é melhor deixar instalado.
 ```
